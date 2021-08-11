@@ -1,24 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import { lazy, Suspense } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Loader from "./components/Loader";
+import ProtectedRoute from "./routes/ProtectedRoutes";
+import PrivateRoute from "./routes/PrivateRoute";
+import PublicRoute from "./routes/PublicRoute";
+
+const LoginPage = lazy(() => import("./components/LoginPage"));
+const Register = lazy(() => import("./components/Register"));
+const ForgotPassword = lazy(() => import("./components/ForgotPassword"));
+const NoFoundComponent = lazy(() => import("./components/NoFoundComponent"));
 
 function App() {
+  const isAuthenticated = localStorage.getItem("toobiauth");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Suspense fallback={<Loader />}>
+        <Switch>
+          <PublicRoute path="/login" isAuthenticated={isAuthenticated}>
+            <LoginPage />
+          </PublicRoute>
+          <PublicRoute path="/register" isAuthenticated={isAuthenticated}>
+            <Register />
+          </PublicRoute>
+          <PublicRoute path="/forgotpassword" isAuthenticated={isAuthenticated}>
+            <ForgotPassword />
+          </PublicRoute>
+
+          <PrivateRoute path="/" isAuthenticated={isAuthenticated}>
+            <ProtectedRoute />
+          </PrivateRoute>
+          <Route path="*">
+            <NoFoundComponent />
+          </Route>
+        </Switch>
+      </Suspense>
+    </Router>
   );
 }
 
