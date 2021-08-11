@@ -5,6 +5,7 @@ import ProtectedRoute from "./routes/ProtectedRoutes";
 import PrivateRoute from "./routes/PrivateRoute";
 import PublicRoute from "./routes/PublicRoute";
 import { useAuth0 } from "@auth0/auth0-react";
+import { overmind } from "./utils/overmind";
 
 const LoginPage = lazy(() => import("./components/LoginPage"));
 const Register = lazy(() => import("./components/Register"));
@@ -13,6 +14,8 @@ const NoFoundComponent = lazy(() => import("./components/NoFoundComponent"));
 
 function App() {
   const { user, isAuthenticated, isLoading } = useAuth0();
+
+  isAuthenticated && overmind.actions.setUser(user);
 
   return (
     <Router>
