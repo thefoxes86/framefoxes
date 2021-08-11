@@ -4,6 +4,7 @@ import Loader from "./components/Loader";
 import ProtectedRoute from "./routes/ProtectedRoutes";
 import PrivateRoute from "./routes/PrivateRoute";
 import PublicRoute from "./routes/PublicRoute";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const LoginPage = lazy(() => import("./components/LoginPage"));
 const Register = lazy(() => import("./components/Register"));
@@ -11,7 +12,8 @@ const ForgotPassword = lazy(() => import("./components/ForgotPassword"));
 const NoFoundComponent = lazy(() => import("./components/NoFoundComponent"));
 
 function App() {
-  const isAuthenticated = localStorage.getItem("toobiauth");
+  const { user, isAuthenticated, isLoading } = useAuth0();
+
   return (
     <Router>
       <Suspense fallback={<Loader />}>
