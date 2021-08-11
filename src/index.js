@@ -10,7 +10,7 @@ ReactDOM.render(
     <Auth0Provider
       domain="dev-cs35xkuf.us.auth0.com"
       clientId="6te68h4f3HTQMF25xpXegB3fgeygUu95"
-      redirectUri={window.location.origin}
+      redirectUri={"https://xdesigners.hopto.org/"}
     >
       <App />
     </Auth0Provider>
