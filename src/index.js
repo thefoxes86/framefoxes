@@ -5,7 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { Provider } from "overmind-react";
-import { overmind } from "./utils/overmind";
+import { overmind } from "utils/overmind";
 
 const redirectUri =
   process.env.NODE_ENV === "production"

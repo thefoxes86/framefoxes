@@ -1,7 +1,7 @@
 import { Component, Suspense } from "react";
 import { Route, Switch } from "react-router-dom";
-import routes from "../utils/routes";
-import Loader from "../components/Loader";
+import routes from "utils/routes";
+import Loader from "components/Loader";
 
 function ProtectedRoutes() {
   return (
