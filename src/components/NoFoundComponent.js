@@ -1,5 +1,5 @@
 function NoFoundCOmponent() {
-  return <h1>NoFoundCOmponent</h1>;
+  return <h1>NoFoundPage</h1>;
 }
 
 export default NoFoundCOmponent;
