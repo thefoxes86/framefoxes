@@ -10,7 +10,7 @@ const overmind = createOvermind({
     user: null,
   },
   actions: {
-    setState({ state }, value) {
+    setUser({ state }, value) {
       state.user = value;
     },
   },
